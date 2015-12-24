@@ -35,7 +35,7 @@ resource "aws_elasticache_cluster" "redis" {
   maintenance_window = "${var.maintenance_window}"
   node_type = "${var.instance_type}"
   num_cache_nodes = "1"
-  parameter_group_name = "default.redis2.8"
+  parameter_group_name = "${var.cache_parameter_group}"
   port = "6379"
   subnet_group_name = "${aws_elasticache_subnet_group.default.name}"
   security_group_ids = ["${aws_security_group.redis.id}"]
@@ -57,7 +57,7 @@ resource "aws_elasticache_subnet_group" "default" {
 
 resource "aws_cloudwatch_metric_alarm" "cpu" {
   alarm_name = "alarmCacheClusterCPUUtilization"
-  alarm_description = "Cache cluster CPU utilization" 
+  alarm_description = "Cache cluster CPU utilization"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods = "1"
   metric_name = "CPUUtilization"

@@ -5,6 +5,8 @@ variable "cache_name" { }
 variable "engine_version" {
   default = "2.8.22"
 }
+variable "cache_parameter_group" {}
+
 variable "instance_type" {
   default = "cache.t2.micro"
 }
